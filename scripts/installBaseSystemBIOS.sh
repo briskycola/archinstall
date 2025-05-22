@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# Arch Linux install script
+# by Santiago Torres
+
+# Determine which CPU microcode to install
+if [[ "$(lscpu | grep "Vendor ID")" == *GenuineIntel* ]]; then
+    MICROCODE="intel-ucode"
+fi
+
+if [[ "$(lscpu | grep "Vendor ID")" == *AuthenticAMD* ]]; then
+    MICROCODE="amd-ucode"
+fi
+
+# Enable parallel downloads in ISO for faster speeds
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 5/' /mnt/etc/pacman.conf
+
+# Install base packages
+pacstrap -K /mnt base base-devel linux linux-firmware linux-headers vim $MICROCODE
+
+# Generate fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# Chroot into the install
+arch-chroot /mnt /bin/bash << EOF
+
+# Set timezone and adjust hardware clock
+ln -sf /usr/share/zoneinfo/$REGION/$CITY /etc/localtime
+hwclock --systohc
+
+# Set locale
+echo "${LOCALE}.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen
+echo "LANG=${LOCALE}.UTF-8" > /etc/locale.conf
+
+# Network Configuration
+echo "$HOSTNAME" > /etc/hostname
+cat << EOL > /etc/hosts
+127.0.0.1    localhost
+::1          localhost
+127.0.0.1    $HOSTNAME.localdomain    $HOSTNAME
+EOL
+
+# Set root password
+printf "$PASSWORD\n$CONFIRM_PASSWORD" | passwd
+
+# Setup User
+useradd -mG wheel,audio,video,storage $USERNAME
+printf "$PASSWORD\n$CONFIRM_PASSWORD" | passwd $USERNAME
+
+# Install GRUB along with other necessary programs
+pacman -S --noconfirm grub dosfstools \
+    e2fsprogs btrfs-progs xfsprogs networkmanager sudo
+
+# Setup GRUB Bootloader
+grub-install --target=i386-pc /dev/$DISK
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Update sudo permissions to allow the user to use sudo
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+# Enable services
+systemctl enable NetworkManager
+
+EOF
