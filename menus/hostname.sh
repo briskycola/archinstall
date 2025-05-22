@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Arch linux install script
+# Arch Linux install script
 # by Santiago Torres
 
 # Prompt the user to choose a hostname

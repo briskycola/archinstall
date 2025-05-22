@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to select the disk
 # that they want to install Arch Linux to
 while true; do

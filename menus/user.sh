@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to make a password
 # for the root user
 while true; do

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to select the driver
 # that cooresponds to their GPU
 while true; do

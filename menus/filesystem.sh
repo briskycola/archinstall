@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to select a filesystem
 # for their installation
 while true; do

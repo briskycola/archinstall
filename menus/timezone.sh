@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to select their
 # region and city to get their timezone.
 while true; do

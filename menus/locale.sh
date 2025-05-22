@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Arch Linux install script
+# by Santiago Torres
+
 # Prompt the user to select a locale
 # to get their preferred language
 LOCALES=$(ls /usr/share/i18n/locales | awk '{print $1 " " NR}')
