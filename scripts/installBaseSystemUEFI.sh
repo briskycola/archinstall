@@ -4,13 +4,15 @@
 # by Santiago Torres
 
 # Determine which CPU microcode to install
-if [[ "$(lscpu | grep "Vendor ID")" == *GenuineIntel* ]]; then
+case "$(lscpu | grep "Vendor ID")" in
+    *GenuineIntel*)
     MICROCODE="intel-ucode"
-fi
+    ;;
 
-if [[ "$(lscpu | grep "Vendor ID")" == *AuthenticAMD* ]]; then
+    *AuthenticAMD*)
     MICROCODE="amd-ucode"
-fi
+    ;;
+esac
 
 # Enable parallel downloads in ISO for faster speeds
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
