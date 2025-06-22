@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Arch Linux install script
 # by Santiago Torres
