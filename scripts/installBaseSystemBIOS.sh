@@ -14,10 +14,6 @@ case "$(lscpu | grep "Vendor ID")" in
     ;;
 esac
 
-# Enable parallel downloads in ISO for faster speeds
-sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
-sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 5/' /mnt/etc/pacman.conf
-
 # Install base packages
 pacstrap -K /mnt base base-devel linux linux-firmware linux-headers vim $MICROCODE
 
