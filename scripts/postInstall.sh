@@ -19,10 +19,6 @@ case $GPU_DRIVER in
     pacman -S --noconfirm xf86-video-intel mesa vulkan-intel
     ;;
 
-    "nvidia")
-    pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
-    ;;
-
     "nvidia-open")
     pacman -S --noconfirm nvidia-open nvidia-utils nvidia-settings
     ;;

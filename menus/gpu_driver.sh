@@ -12,7 +12,6 @@ while true; do
         "amdgpu" "Southern Islands and later" \
         "ati" "Older AMD GPUs" \
         "intel" "Intel cards" \
-        "nvidia" "Maxwell through Ada Lovelace" \
         "nvidia-open" "Turing and newer" \
         "nouveau" "Open source Nvidia drivers (for legacy cards)" \
         "qemu" "QEMU VirtIO/QXL" \
