@@ -51,7 +51,7 @@ pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa \
 # Install KDE
 pacman -S --noconfirm plasma-desktop dolphin dolphin-plugins \
 ffmpegthumbs ark konsole okular gwenview kscreen \
-firefox mpv yt-dlp ffmpeg zed kde-gtk-config breeze-gtk \
+firefox mpv yt-dlp ffmpeg helix kde-gtk-config breeze-gtk \
 plasma-pa plasma-nm power-profiles-daemon htop \
 partitionmanager ufw plasma-firewall sddm sddm-kcm
 
